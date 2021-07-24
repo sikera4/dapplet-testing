@@ -1,0 +1,60 @@
+.search-bar {
+  display: flex;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 1);
+  &__input-container {
+    position: relative;
+    flex-grow: 1;
+  }
+  &__input {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%), rgba(255, 255, 255, 0.8);
+    box-shadow: 10px 10px 40px rgba(156, 185, 222, 0.36);
+    box-sizing: border-box;
+    height: 40px;
+    font-size: 16px;
+    line-height: 19px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 1);
+    border-radius: 10px;
+    width: 100%;
+    outline: none;
+    padding-left: 36px;
+    min-width: 600px;
+    &:focus {
+      border: 1px solid rgba(0, 133, 255, 0.5);
+    }
+    &::placeholder {
+      color: #BBBBBB;
+    }
+  }
+  &__icon {
+    position: absolute;
+    left: 10px;
+    top: 12px;
+  }
+  &__release-date-container {
+    position: relative;
+  }
+  &__release-date, &__sorting {
+    padding: 11px 15px 10px 10px;
+    appearance: none;
+    font-size: 16px;
+    line-height: 19px;
+    margin-left: 20px;
+    width: 210px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%), rgba(255, 255, 255, 0.8);
+    box-shadow: 10px 10px 40px rgba(156, 185, 222, 0.36);
+    border: 1px solid rgba(255, 255, 255, 1);
+    border-radius: 10px;
+    box-sizing: border-box;
+    outline: none;
+  }
+  &__arrow-icon {
+    position: absolute;
+    right: 10px;
+    top: 17px;
+  }
+  &__sorting-container {
+    position: relative;
+  }
+}
