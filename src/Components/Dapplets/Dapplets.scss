@@ -1,0 +1,83 @@
+.dapplet {
+  display: flex;
+  padding: 12px 20px;
+  border: 1px solid rgba(255, 255, 255, 1);
+  margin-top: 20px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%), rgba(255, 255, 255, 0.3);
+  box-shadow: 10px 10px 40px rgba(156, 185, 222, 0.1);
+  backdrop-filter: blur(20px);
+  border-radius: 10px;
+  &__drag-point {
+    cursor: pointer;
+    align-self: center;
+    position: relative;
+    width: 18px;
+    height: 1px;
+    background-color: #BBBBBB;
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 3px;
+      background-color: #BBBBBB;
+      width: 18px;
+      height: 1px;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      background-color: #BBBBBB;
+      width: 18px;
+      height: 1px;
+    }
+  }
+  &__image {
+    margin-left: 20px;
+  }
+  &__caption {
+    align-self: center;
+    margin-left: 20px;
+  }
+  &__name {
+    color: #2A2A2A;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+  }
+  &__code {
+    font-size: 12px;
+    line-height: 14px;
+    color: #999999;
+    margin-top: 3px;
+  }
+  &__some-text {
+    align-self: center;
+    margin-left: 20px;
+    color: #565555;
+    font-size: 16px;
+    line-height: 19px;
+    min-width: 380px;
+  }
+  &__user {
+    color: #BBBBBB;
+    font-size: 14px;
+    line-height: 16px;
+    align-self: center;
+    margin-left: 20px;
+  }
+  &__tag {
+    color: #FFFFFF;
+    background-color: #5241BF;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    padding: 2.5px 3px 1.5px 3px;
+    border-radius: 4px;
+  }
+  &__cross {
+    margin-left: 4px;
+  }
+}
