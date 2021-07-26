@@ -1,0 +1,102 @@
+@import '../../assets/fonts/fonts.scss';
+.right-aside {
+  min-width: 320px;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(185, 251, 255, 0.2) 0%, rgba(227, 220, 255, 0.2) 100%);
+  backdrop-filter: blur(30px);
+  padding: 86px 20px 0px;
+  &__settings-header, &__tags-header, &__community-tags-header, &__working-on-header {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    text-transform: uppercase;
+    font-family: 'SFProDisplay';
+    margin-top: 30px;
+  }
+  &__new-list, &__new-tag {
+    margin-top: 30px;
+    &-input-caption {
+      font-family: 'SFProDisplay';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 19px;
+      color: #999999;
+    }
+    &-input {
+      margin-top: 10px;
+      display: flex;
+    }
+    &-text-input {
+      box-sizing: border-box;
+      height: 40px;
+      border: 1px solid #FFF;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%), rgba(255, 255, 255, 0.8);
+      box-shadow: 10px 10px 40px rgba(156, 185, 222, 0.36);
+      border-radius: 10px;
+      padding-left: 10px;
+      outline: none;
+      font-family: 'SFProDisplay';
+      font-size: 16px;
+      line-height: 19px;
+      &:focus {
+        border: 1px solid #2A2A2A;
+      }
+      &::placeholder {
+        font-family: 'SFProDisplay';
+        font-size: 16px;
+        line-height: 19px;
+        color: #2A2A2A;    
+      }
+    }
+    &-create-button {
+      box-sizing: border-box;
+      height: 40px;
+      background: #0085FF;
+      border: none;
+      outline: none;
+      border-radius: 10px;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 14px;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      padding: 13px 20px;
+      margin-left: 10px;
+      cursor: pointer;
+      &:active {
+        background: teal;
+      }
+    }
+  }
+  &__new-tag {
+    margin-top: 60px;
+  }
+  &__tags-header, &__community-tags-header {
+    margin-top: 60px;
+  }
+  &__my-tags, &__community-tags {
+    display: flex;
+    margin-top: 10px;
+  }
+  &__tag-container {
+    margin-right: 4px;
+  }
+  &__community-tags {
+    padding-bottom: 30px;
+    border-bottom: 1px solid #FFF;
+  }
+  &__community-tag {
+    background-color: #41BFB0;
+  }
+  &__working-on-header {
+    margin-top: 30px;
+  }
+  &__working-on-list {
+    list-style: inside url('../../assets/red-cross.svg');
+    &-item {
+      color: #999999;
+      margin-top: 10px;
+    }
+  }
+}

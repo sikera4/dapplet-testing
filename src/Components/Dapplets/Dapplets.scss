@@ -1,4 +1,6 @@
+@import '../../assets/fonts/fonts.scss';
 .dapplet {
+  font-family: 'SFProDisplay';
   display: flex;
   padding: 12px 20px;
   border: 1px solid rgba(255, 255, 255, 1);
@@ -10,6 +12,8 @@
   &__drag-point {
     cursor: pointer;
     align-self: center;
+  }
+  &__drag-drop {
     position: relative;
     width: 18px;
     height: 1px;
@@ -33,10 +37,12 @@
   }
   &__image {
     margin-left: 20px;
+    align-self: center;
   }
   &__caption {
     align-self: center;
     margin-left: 20px;
+    flex-grow: 1;
   }
   &__name {
     color: #2A2A2A;
@@ -57,7 +63,7 @@
     color: #565555;
     font-size: 16px;
     line-height: 19px;
-    min-width: 380px;
+    flex-grow: 1;
   }
   &__user {
     color: #BBBBBB;
@@ -65,19 +71,53 @@
     line-height: 16px;
     align-self: center;
     margin-left: 20px;
+    font-family: 'Roboto';
+    flex-grow: 1;
   }
-  &__tag {
-    color: #FFFFFF;
-    background-color: #5241BF;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 10px;
+  &__tags {
+    min-width: 139px;
+    margin-left: 20px;
     display: flex;
-    align-items: center;
-    padding: 2.5px 3px 1.5px 3px;
-    border-radius: 4px;
+    align-self: center;
+    flex-direction: column;
+    &-top-row {
+      display: flex;
+    }
+    &-bottom-row {
+      display: flex;
+      margin-top: 10px;
+    }
+  }
+  &__tag-container {
+    margin-right: 4px;
   }
   &__cross {
+    cursor: pointer;
     margin-left: 4px;
+  }
+  &__install-button {
+    flex-grow: 0;
+    text-transform: uppercase;
+    font-family: 'SFProDisplay';
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+    padding: 6px 20px;
+    color: #FFF;
+    border-radius: 50px;
+    align-self: center;
+    margin-left: 35px;
+    cursor: pointer;
+    transition: ease-out 0.3s;
+    &:hover {
+      box-shadow: 5px 5px 5px #a2a5a7;
+    }
+    &_uninstalled {
+      background: #0085FF;
+    }
+    &_installed {
+      background: #CCD4DB;
+    }
   }
 }
