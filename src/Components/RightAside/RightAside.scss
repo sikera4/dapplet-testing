@@ -1,10 +1,12 @@
 @import '../../assets/fonts/fonts.scss';
 .right-aside {
-  min-width: 320px;
-  height: 100%;
+  min-width: 300px;
+  max-height: 100%;
   background: linear-gradient(180deg, rgba(185, 251, 255, 0.2) 0%, rgba(227, 220, 255, 0.2) 100%);
   backdrop-filter: blur(30px);
   padding: 86px 20px 0px;
+  display: flex;
+  flex-direction: column;
   &__settings-header, &__tags-header, &__community-tags-header, &__working-on-header {
     font-weight: 600;
     font-size: 24px;
@@ -64,6 +66,10 @@
       padding: 13px 20px;
       margin-left: 10px;
       cursor: pointer;
+      transition: ease-out 0.3s;
+      &:hover {
+        box-shadow: 5px 5px 5px #a2a5a7;
+      }
       &:active {
         background: teal;
       }

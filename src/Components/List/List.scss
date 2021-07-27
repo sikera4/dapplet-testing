@@ -1,8 +1,14 @@
 .list {
-  margin: 76px 70px;
+  max-width: 1000px;
+  margin-top: 76px;
+  align-self: center;
   background: linear-gradient(180deg, rgba(185, 251, 255, 0.2) 0%, rgba(227, 220, 255, 0.2) 100%);
   backdrop-filter: blur(30px);
   border-radius: 10px;
   padding: 24px 20px;
   border: 2px solid rgba(255, 255, 255, 1);
+  &__loader-container {
+    display: flex;
+    justify-content: center;
+  }
 }

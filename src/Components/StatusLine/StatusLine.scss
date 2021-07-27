@@ -21,6 +21,9 @@
     line-height: 19px;
     color: #62BD6B;
   }
+  &__status_not-active {
+    color: red;
+  }
   &__settings {
     cursor: pointer;
     &-icon {
