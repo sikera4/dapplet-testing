@@ -1,10 +1,11 @@
 import './Dapplet.scss';
-import React, { useState, useEffect } from 'react';
+import React, { useState, SyntheticEvent } from 'react';
 import Tag from '../Tag/Tag';
 import imageLoader from '../../assets/loading-gif.gif';
+import logo from '../../assets/RR_Logo.png';
 
 export interface DappletPropsInterface {
-  id: string;
+  id?: string;
   title: string;
   description: string;
   author: string;
@@ -15,25 +16,21 @@ export interface DappletPropsInterface {
 const Dapplet = (props: DappletPropsInterface) => {
   const [installed, setInstalled] = useState<boolean>(false);
   const [iconLoaded, setIconLoaded] = useState<boolean>(false);
-  useEffect(() => {
-    const fetchIcon = async () => {
-      const response =await fetch(`https://dapplets-hiring-api.herokuapp.com/api/v1/files/${props.icon}`);
-      return response;
-    }
-    fetchIcon().then((response) => {
-      if (response.status === 200) {
-        setIconLoaded(true);
-      } else {
-        setIconLoaded(false);
-      }
-    });
-  }, [props.icon])
+
+  const addDefaultSrc = (event: SyntheticEvent<HTMLImageElement>) => {
+    const eTarget = event.target as HTMLImageElement;
+    eTarget.src = logo;
+  }
+
   return (
     <div className="dapplet">
       <div className="dapplet__drag-point">
         <div className="dapplet__drag-drop"></div>
       </div>
-      <img src={iconLoaded ? `https://dapplets-hiring-api.herokuapp.com/api/v1/files/${props.icon}` : imageLoader} alt="" className="dapplet__image" height="50" width="50"/>
+      <img src={iconLoaded ? `https://dapplets-hiring-api.herokuapp.com/api/v1/files/${props.icon}` : imageLoader} 
+      alt="" className="dapplet__image" height="50" width="50"
+      onLoad={() => setIconLoaded(true)}
+      onError={addDefaultSrc}/>
       <div className="dapplet__caption">
         <div className="dapplet__name">{props.title.slice(0, 35)}</div>
         <div className="dapplet__code">{props.address}</div>

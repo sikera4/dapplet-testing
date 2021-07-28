@@ -1,12 +1,18 @@
 import './SearchBar.scss';
 import searchIcon from '../../assets/ph_magnifying-glass-bold.png';
 import arrow from '../../assets/arrow.png';
+import React from 'react';
 
-const SearchBar = () => {
+interface SearchBarPropsInterface {
+  setSearchInputValue(e:React.ChangeEvent<HTMLInputElement>): void;
+}
+
+const SearchBar = (props: SearchBarPropsInterface) => {
   return (
     <div className="search-bar">
       <div className="search-bar__input-container">
-        <input type="text" placeholder="Search" className="search-bar__input" />
+        <input type="text" placeholder="Search" className="search-bar__input" 
+        onChange={props.setSearchInputValue}/>
         <img src={searchIcon} alt="" className="search-bar__icon" height="16" width="16" />
       </div>
       <div className="search-bar__release-date-container">
