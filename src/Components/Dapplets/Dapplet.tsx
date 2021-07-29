@@ -3,9 +3,10 @@ import React, { useState, SyntheticEvent } from 'react';
 import Tag from '../Tag/Tag';
 import imageLoader from '../../assets/loading-gif.gif';
 import logo from '../../assets/RR_Logo.png';
+import { useEffect } from 'react';
 
 export interface DappletPropsInterface {
-  id?: string;
+  id: string;
   title: string;
   description: string;
   author: string;
@@ -22,17 +23,28 @@ const Dapplet = (props: DappletPropsInterface) => {
     eTarget.src = logo;
   }
 
+
+  useEffect(() => {
+    let data = localStorage.getItem(props.id);
+    if (data) {
+      setInstalled(JSON.parse(data))
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem(props.id, JSON.stringify(installed));
+  })
+
+  
+
   return (
-    <div className="dapplet">
-      <div className="dapplet__drag-point">
-        <div className="dapplet__drag-drop"></div>
-      </div>
+      <div className="dapplet">
       <img src={iconLoaded ? `https://dapplets-hiring-api.herokuapp.com/api/v1/files/${props.icon}` : imageLoader} 
       alt="" className="dapplet__image" height="50" width="50"
       onLoad={() => setIconLoaded(true)}
       onError={addDefaultSrc}/>
       <div className="dapplet__caption">
-        <div className="dapplet__name">{props.title.slice(0, 35)}</div>
+        <div className="dapplet__name">{props.title.slice(0, 38)}</div>
         <div className="dapplet__code">{props.address}</div>
       </div>
       <div className="dapplet__description">{props.description.slice(0, 35)}</div>

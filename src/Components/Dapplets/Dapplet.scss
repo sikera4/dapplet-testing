@@ -1,43 +1,8 @@
 @import '../../assets/fonts/fonts.scss';
+
 .dapplet {
   font-family: 'SFProDisplay';
   display: flex;
-  padding: 12px 20px;
-  border: 1px solid rgba(255, 255, 255, 1);
-  margin-top: 20px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%), rgba(255, 255, 255, 0.3);
-  &:hover {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%), rgba(0, 133, 255, 0.29);
-  }
-  box-shadow: 10px 10px 40px rgba(156, 185, 222, 0.1);
-  backdrop-filter: blur(20px);
-  border-radius: 10px;
-  &__drag-point {
-    cursor: pointer;
-    align-self: center;
-  }
-  &__drag-drop {
-    position: relative;
-    width: 18px;
-    height: 1px;
-    background-color: #BBBBBB;
-    &::before {
-      content: '';
-      position: absolute;
-      bottom: 3px;
-      background-color: #BBBBBB;
-      width: 18px;
-      height: 1px;
-    }
-    &::after {
-      content: '';
-      position: absolute;
-      top: 3px;
-      background-color: #BBBBBB;
-      width: 18px;
-      height: 1px;
-    }
-  }
   &__image {
     margin-left: 20px;
     align-self: center;

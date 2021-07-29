@@ -1,3 +1,4 @@
+@import '../../assets/fonts/fonts.scss';
 .list {
   max-width: 1000px;
   margin-top: 76px;
@@ -10,5 +11,56 @@
   &__loader-container {
     display: flex;
     justify-content: center;
+  }
+  &__end-message {
+    margin-top: 20px;
+    color: #565555;
+    text-align: center;
+    font-size: 1.25rem;
+    font-family: 'SFProDisplay';
+    overflow-y: hidden;
+  }
+  &__dapplet {
+    top: auto !important;
+    left: auto !important;
+    padding: 12px 20px;
+    margin-top: 20px;
+    &:hover {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%), rgba(0, 133, 255, 0.29);
+    }
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%), rgba(255, 255, 255, 0.3);
+    box-shadow: 10px 10px 40px rgba(156, 185, 222, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    display: flex;
+    &-drag-handle-container {
+      align-self: center;
+      height: 18px;
+      display: flex;
+    }
+    &-drag-handle {
+      align-self: center;
+      position: relative;
+      width: 18px;
+      height: 1px;
+      background-color: #BBBBBB;
+      &::before {
+        content: '';
+        position: absolute;
+        bottom: 3px;
+        background-color: #BBBBBB;
+        width: 18px;
+        height: 1px;
+      }
+      &::after {
+        content: '';
+        position: absolute;
+        top: 3px;
+        background-color: #BBBBBB;
+        width: 18px;
+        height: 1px;
+      }
+    }
   }
 }
