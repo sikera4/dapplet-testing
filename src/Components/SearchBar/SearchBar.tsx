@@ -2,12 +2,14 @@ import './SearchBar.scss';
 import searchIcon from '../../assets/ph_magnifying-glass-bold.png';
 import arrow from '../../assets/arrow.png';
 import React from 'react';
+import { useState } from 'react';
 
 interface SearchBarPropsInterface {
   setSearchInputValue(e:React.ChangeEvent<HTMLInputElement>): void;
 }
 
 const SearchBar = (props: SearchBarPropsInterface) => {
+  const [desceningSort, setDescendingSort] = useState(true);
   return (
     <div className="search-bar">
       <div className="search-bar__input-container">
@@ -22,10 +24,11 @@ const SearchBar = (props: SearchBarPropsInterface) => {
         <img src={arrow} alt="" className="search-bar__arrow-icon" height="8" width="14"/>
       </div>
       <div className="search-bar__sorting-container">
-        <select className="search-bar__sorting" defaultValue="0">
-          <option value="0">Descending</option>
-        </select>
-        <img src={arrow} alt="" className="search-bar__arrow-icon" height="8" width="14"/>
+        <button onClick={() => setDescendingSort(!desceningSort)} 
+        className="search-bar__sorting-button">{desceningSort ? 'Descending' : 'Ascending'}</button>
+        <img src={arrow} alt="" 
+        className={`search-bar__arrow-icon ${desceningSort ? '': 'search-bar__arrow-icon-up'}`} 
+        height="8" width="14"/>
       </div>
     </div>
   )

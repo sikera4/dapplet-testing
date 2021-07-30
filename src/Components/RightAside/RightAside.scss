@@ -1,4 +1,6 @@
+@import '../../media-mixins';
 @import '../../assets/fonts/fonts.scss';
+
 .right-aside {
   min-width: 300px;
   max-height: 100%;
@@ -104,5 +106,10 @@
       color: #999999;
       margin-top: 10px;
     }
+  }
+}
+@include media-xl {
+  .right-aside {
+    display: none;
   }
 }

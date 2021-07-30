@@ -1,3 +1,5 @@
+@import '../../media-mixins';
+
 .left-aside {
   padding: 77px 0;
   backdrop-filter: blur(30px);
@@ -38,5 +40,10 @@
   }
   &__regular-icon {
     cursor: pointer;
+  }
+}
+@include media-lg {
+  .left-aside {
+    display: none;
   }
 }

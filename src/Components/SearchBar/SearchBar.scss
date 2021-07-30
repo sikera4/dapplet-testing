@@ -1,3 +1,5 @@
+@import '../../media-mixins';
+
 .search-bar {
   display: flex;
   padding-bottom: 20px;
@@ -27,6 +29,11 @@
       color: #BBBBBB;
     }
   }
+  @include media-md {
+    &__input {
+      min-width: 250px;
+    }
+  }
   &__icon {
     position: absolute;
     left: 10px;
@@ -35,7 +42,7 @@
   &__release-date-container {
     position: relative;
   }
-  &__release-date, &__sorting {
+  &__release-date, &__sorting-button {
     padding: 11px 15px 10px 10px;
     appearance: none;
     font-size: 16px;
@@ -48,11 +55,20 @@
     border-radius: 10px;
     box-sizing: border-box;
     outline: none;
+    cursor: pointer;
+  }
+  &__sorting-button {
+    text-align: left;
   }
   &__arrow-icon {
     position: absolute;
     right: 10px;
     top: 17px;
+    cursor: pointer;
+    transition: ease-out 0.3s;
+    &-up {
+      transform: rotate(180deg);
+    }
   }
   &__sorting-container {
     position: relative;

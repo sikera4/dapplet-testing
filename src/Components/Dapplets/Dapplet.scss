@@ -1,8 +1,17 @@
 @import '../../assets/fonts/fonts.scss';
+@import '../../media-mixins';
 
 .dapplet {
   font-family: 'SFProDisplay';
-  display: flex;
+  cursor: pointer;
+  &__brief-view {
+    display: flex;
+  }
+  @include media-lg {
+    &__brief-view {
+      justify-content: space-between;
+    }
+  }
   &__image {
     margin-left: 20px;
     align-self: center;
@@ -12,6 +21,11 @@
     align-self: center;
     margin-left: 20px;
     min-width: 285px;
+  }
+  @include media-lg {
+    &__caption {
+      min-width: 220px;
+    }
   }
   &__name {
     color: #2A2A2A;
@@ -25,6 +39,22 @@
     line-height: 14px;
     color: #999999;
     margin-top: 3px;
+  }
+  @include media-lg {
+    &__code {
+      display: none;
+    }
+  }
+  &__media-md-name {
+    display: none;
+  }
+  @include media-md {
+    &__media-md-name {
+      display: block;
+      font-size: 14px;
+      line-height: 16px;
+      color: #BBBBBB;
+    }
   }
   &__description {
     align-self: center;
@@ -44,6 +74,11 @@
     flex-grow: 1;
     width: 95px;
   }
+  @include media-md {
+    &__user {
+      display: none;
+    }
+  }
   &__tags {
     min-width: 139px;
     margin-left: 20px;
@@ -56,6 +91,11 @@
     &-bottom-row {
       display: flex;
       margin-top: 10px;
+    }
+  }
+  @include media-md {
+    &__tags {
+      
     }
   }
   &__tag-container {
@@ -94,6 +134,39 @@
     }
     &_installed {
       background: #CCD4DB;
+    }
+  }
+  &__additional-view {
+    display: none;
+    &_open {
+      display: flex;
+    }
+  }
+  &__text-header {
+    font-size: 14px;
+    line-height: 17px;
+    color: #BBBBBB;
+  }
+  &__info {
+    font-size: 16px;
+    line-height: 19px;
+  }
+  &__info-1 {
+    margin-left: 70px;
+    width: 350px;
+    margin-top: 20px;
+  }
+  &__other-info {
+    margin-left: 31px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 250px;
+    .dapplet__info {
+      margin-bottom: 20px;
+      margin-right: 35px;
+      max-width: 130px;
     }
   }
 }

@@ -1,6 +1,7 @@
 import './Main.scss';
 import StatusLine from "../StatusLine/StatusLine";
 import List from '../List/List';
+import Header from '../Header/Header';
 import { useState } from 'react';
 
 const Main = () => {
@@ -11,6 +12,7 @@ const Main = () => {
 
   return (
     <main className="main">
+      <Header/>
       <StatusLine status={status}/>
       <List statusChanger={statusChanger}/>
     </main>

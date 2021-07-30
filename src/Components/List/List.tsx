@@ -123,7 +123,16 @@ const List = (props: ListPropsInterface) => {
                           description={list.description}
                           icon={list.icon}
                           title={list.title}
-                          address={list.address}/>
+                          address={list.address}
+                          text_1={list.text_1}
+                          text_2={list.text_2}
+                          text_3={list.text_3}
+                          text_4={list.text_4}
+                          text_5={list.text_5}
+                          text_6={list.text_6}
+                          text_7={list.text_7}
+                          text_8={list.text_8}
+                          text_9={list.text_9}/>
                       </li>
                     )}
                   </Draggable>

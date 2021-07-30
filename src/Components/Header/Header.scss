@@ -1,0 +1,40 @@
+@import '../../media-mixins';
+@import '../../assets/fonts/fonts.scss';
+
+.header {
+  display: none;
+}
+
+@include media-lg {
+  .header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 35px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    &__caption {
+      display: flex;
+    }
+    &__name {
+      text-transform: uppercase;
+      font-family: 'SFProDisplay';
+      font-weight: 900;
+      font-size: 16px;
+      line-height: 149%;
+      margin-left: 10px;
+      align-self: center;
+      b {
+        color: rgba(197, 25, 25, 0.733);
+      }
+    }
+    &__burger {
+      margin-right: 70px;
+      align-self: center;
+    }
+  }
+}

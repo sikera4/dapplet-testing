@@ -1,4 +1,6 @@
 @import '../../assets/fonts/fonts.scss';
+@import '../../media-mixins';
+
 .list {
   max-width: 1000px;
   margin-top: 76px;
@@ -62,5 +64,10 @@
         height: 1px;
       }
     }
+  }
+}
+
+@include media-lg {
+  .list {
   }
 }
