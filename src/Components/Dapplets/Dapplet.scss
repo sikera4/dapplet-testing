@@ -7,13 +7,18 @@
   &__brief-view {
     display: flex;
   }
-  @include media-lg {
+  @include media-md {
     &__brief-view {
-      justify-content: space-between;
+      max-width: 500px;
+      flex-wrap: wrap;
+    }
+  }
+  @include media-sm {
+    &__brief-view {
+      max-width: 450px;
     }
   }
   &__image {
-    margin-left: 20px;
     align-self: center;
     border-radius: 10px;
   }
@@ -21,10 +26,36 @@
     align-self: center;
     margin-left: 20px;
     min-width: 285px;
+    display: flex;
+    &-inner-container {
+      align-self: center;
+      margin-left: 20px;
+    }
+    @include media-sm {
+      &-inner-container {
+        margin-left: 10px;
+      }
+    }
+    &-constant-part {
+      display: flex;
+    }
   }
   @include media-lg {
     &__caption {
-      min-width: 220px;
+      min-width: 280px;
+    }
+  }
+  @include media-sm {
+    &__caption {
+      margin-left: 10px;
+    }
+  }
+  @include media-xs {
+    &__caption {
+      display: flex;
+      min-width: 200px;
+      width: 100%;
+      justify-content: space-between;
     }
   }
   &__name {
@@ -33,6 +64,12 @@
     font-weight: bold;
     font-size: 16px;
     line-height: 19px;
+  }
+  @include media-xs {
+    &__name {
+      font-size: 12px;
+      line-height: 14px;
+    }
   }
   &__code {
     font-size: 12px;
@@ -48,12 +85,39 @@
   &__media-md-name {
     display: none;
   }
+  &__media-xs-install-button {
+    display: none;
+  }
+  @include media-xs {
+    &__media-xs-install-button {
+      align-self: center;
+      padding: 6px;
+      display: block;
+      border: none;
+      border-radius: 50px;
+      height: 26px;
+      width: 26px;
+      cursor: pointer;
+      &_installed {
+        background-color: #CCD4DB;
+      }
+      &_uninstalled {
+        background-color: #0085FF;
+      }
+    }
+  }
   @include media-md {
     &__media-md-name {
       display: block;
       font-size: 14px;
       line-height: 16px;
       color: #BBBBBB;
+    }
+  }
+  @include media-xs {
+    &__media-md-name {
+      font-size: 12px;
+      line-height: 14px;
     }
   }
   &__description {
@@ -63,6 +127,19 @@
     font-size: 16px;
     line-height: 19px;
     width: 150px;
+  }
+  @include media-sm {
+    &__description {
+      margin-left: 10px;
+    }
+  }
+  @include media-xs {
+    &__description {
+      width: 250px;
+      font-size: 12px;
+      line-height: 14px;
+      margin-top: 10px;
+    }
   }
   &__user {
     color: #BBBBBB;
@@ -92,10 +169,27 @@
       display: flex;
       margin-top: 10px;
     }
+    @include media-md {
+      &-bottom-row {
+        margin-top: 0;
+      }
+    }
   }
   @include media-md {
     &__tags {
-      
+      margin-left: 20px;
+      margin-top: 20px;
+      flex-direction: row;
+    }
+  }
+  @include media-sm {
+    &__tags {
+      margin-left: 10px;
+    }
+  }
+  @include media-xs {
+    &__tags {
+      margin-top: 10px;
     }
   }
   &__tag-container {
@@ -113,7 +207,24 @@
     justify-content: flex-end;
     justify-self: end;
   }
+  @include media-md {
+    &__button-container {
+      margin-left: 80px;
+      margin-top: 20px;
+    }
+  }
+  @include media-sm {
+    &__button-container {
+      margin-left: 60px;
+    }
+  }
+  @include media-xs {
+    &__button-container {
+      display: none;
+    }
+  }
   &__install-button {
+    border: none;
     text-transform: uppercase;
     font-family: 'SFProDisplay';
     font-weight: 500;
@@ -141,8 +252,13 @@
     &_open {
       display: flex;
     }
+    @include media-md {
+      &_open {
+        flex-direction: column;
+      }
+    }
   }
-  &__text-header {
+  &__info-header {
     font-size: 14px;
     line-height: 17px;
     color: #BBBBBB;
@@ -153,8 +269,14 @@
   }
   &__info-1 {
     margin-left: 70px;
-    width: 350px;
+    max-width: 350px;
     margin-top: 20px;
+  }
+  @include media-md {
+    &__info-1 {
+      margin-left: 0;
+      align-self: center;
+    }
   }
   &__other-info {
     margin-left: 31px;
@@ -162,11 +284,28 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    height: 250px;
-    .dapplet__info {
-      margin-bottom: 20px;
-      margin-right: 35px;
-      max-width: 130px;
+    height: 210px;
+  }
+  @include media-md {
+    &__other-info {
+      margin-top: 10px;
+      margin-left: 0;
+      flex-direction: row;
+      height: 80px;
+      align-self: center;
+    }
+  }
+  &__info {
+    margin-bottom: 20px;
+    margin-right: 35px;
+    max-width: 130px;
+  }
+  @include media-md {
+    @for $i from 3 to 9 {
+      &__info-#{$i} {
+        display: none;
+      }
     }
   }
 }
+

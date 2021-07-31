@@ -3,6 +3,8 @@ import React, { useState, SyntheticEvent } from 'react';
 import Tag from '../Tag/Tag';
 import imageLoader from '../../assets/loading-gif.gif';
 import logo from '../../assets/RR_Logo.png';
+import downloadIcon from '../../assets/download.png';
+import checkIcon from '../../assets/check-circle.png';
 import { useEffect } from 'react';
 
 export interface DappletPropsInterface {
@@ -47,14 +49,27 @@ const Dapplet = (props: DappletPropsInterface) => {
   return (
       <div className="dapplet" onClick={() => setIsOpen(!isOpen)}>
         <div className="dapplet__brief-view">
-          <img src={iconLoaded ? `https://dapplets-hiring-api.herokuapp.com/api/v1/files/${props.icon}` : imageLoader} 
-          alt="" className="dapplet__image" height="50" width="50"
-          onLoad={() => setIconLoaded(true)}
-          onError={addDefaultSrc}/>
           <div className="dapplet__caption">
-            <div className="dapplet__name">{props.title.slice(0, 30)}</div>
-            <div className="dapplet__code">{props.address}</div>
-            <div className="dapplet__media-md-name">{props.author}</div>
+            <div className="dapplet__caption-constant-part">
+              <img src={iconLoaded ? `https://dapplets-hiring-api.herokuapp.com/api/v1/files/${props.icon}` : imageLoader} 
+              alt="" className="dapplet__image" height="50" width="50"
+              onLoad={() => setIconLoaded(true)}
+              onError={addDefaultSrc}/>
+              <div className="dapplet__caption-inner-container">
+                <div className="dapplet__name">{props.title.slice(0, 30)}</div>
+                <div className="dapplet__code">{props.address}</div>
+                <div className="dapplet__media-md-name">{props.author}</div>
+              </div>
+            </div>
+            <button className={`dapplet__media-xs-install-button ${installed ? 'dapplet__media-xs-install-button_installed':
+              'dapplet__media-xs-install-button_uninstalled'}`}
+              onClick={(e: React.MouseEvent) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setInstalled(!installed);
+                }}><img src={installed ? checkIcon: downloadIcon} alt="" height="14" width="14"
+                    className="dapplet__media-xs-install-button-icon" />
+            </button>
           </div>
           <div className="dapplet__description">{props.description.slice(0, 35)}</div>
           <div className="dapplet__user">{props.author}</div>
@@ -77,28 +92,28 @@ const Dapplet = (props: DappletPropsInterface) => {
             </div>
           </div>
           <div className="dapplet__button-container">
-            <div className={`dapplet__install-button ${(installed) ? "dapplet__install-button_installed" : 
+            <button className={`dapplet__install-button ${(installed) ? "dapplet__install-button_installed" : 
             "dapplet__install-button_uninstalled"}`}
             onClick={(e: React.MouseEvent) => {
               e.preventDefault();
               e.stopPropagation();
               setInstalled(!installed);
               }}>{(installed) ? 'installed' : 'install'}
-              </div>
+              </button>
           </div>
         </div>
         <div className={`dapplet__additional-view ${isOpen ? 'dapplet__additional-view_open' : ''}`}>
           <div className="dapplet__info-1">
-            <span className="dapplet__text-header">{props.text_1.slice(0, 5)}</span>
-            <p className="dapplet__text">{props.text_1}</p>
+            <span className="dapplet__info-header">{props.text_1.slice(0, 5)}</span>
+            <p className="dapplet__info-text">{props.text_1}</p>
           </div>
           <div className="dapplet__other-info">
-            {texts.map((text) => {
+            {texts.map((text, index) => {
               if (text) {
                 return (
-                  <div key={text} className="dapplet__info">
-                    <span className="dapplet__text-header">{text.slice(0, 5)}</span>
-                    <p className="dapplet__text">{text}</p>
+                  <div key={index} className={`dapplet__info ${`dapplet__info-${index + 2}`}`}>
+                    <span className="dapplet__info-header">{text.slice(0, 5)}</span>
+                    <p className="dapplet__info-text">{text}</p>
                   </div>
                 )
               }

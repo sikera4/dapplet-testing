@@ -72,14 +72,7 @@ const List = (props: ListPropsInterface) => {
     let neededLimit = (outFilteredDapplets) ? outFilteredDapplets : 20;
     loadMoreData(neededLimit).catch((e: Error) => props.statusChanger(e.message));
   }
-
-  useEffect(() => {
-    fetchData('')
-      .then((list) => {
-        setListsData(list);
-    }).catch((e: Error) => props.statusChanger(e.message));
-  }, []);
-
+  
   useEffect(() => {
     if (debouncedSearchValue) {
       fetchData(debouncedSearchValue).then((lists) => {
@@ -91,6 +84,11 @@ const List = (props: ListPropsInterface) => {
         if (newLists.length === 0) setHasMore(false);
         props.statusChanger('Active');
       }).catch((e: Error) => props.statusChanger(e.message))
+    } else {
+      fetchData('')
+        .then((list) => {
+          setListsData(list);
+      }).catch((e: Error) => props.statusChanger(e.message));
     }
   }, [debouncedSearchValue, props]);
   

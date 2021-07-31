@@ -64,10 +64,29 @@
         height: 1px;
       }
     }
+    @include media-xs {
+      &-drag-handle {
+        display: none;
+      }
+    }
+  }
+  @include media-sm {
+    &__dapplet {
+      padding: 6px 10px;
+    }
+  }
+  @include media-xs {
+    &__dapplet {
+      margin-top: 10px;
+      box-shadow: 0px 0px 19px 0px rgba(156, 185, 222, 0.15);
+    }
   }
 }
 
-@include media-lg {
+@include media-xs {
   .list {
+    margin-top: 70px;
+    background: #FFF;
+    padding: 10px;
   }
 }

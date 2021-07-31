@@ -17,18 +17,20 @@ const SearchBar = (props: SearchBarPropsInterface) => {
         onChange={props.setSearchInputValue}/>
         <img src={searchIcon} alt="" className="search-bar__icon" height="16" width="16" />
       </div>
-      <div className="search-bar__release-date-container">
-        <select className="search-bar__release-date" defaultValue="0">
-          <option value="0">Release date</option>
-        </select>
-        <img src={arrow} alt="" className="search-bar__arrow-icon" height="8" width="14"/>
-      </div>
-      <div className="search-bar__sorting-container">
-        <button onClick={() => setDescendingSort(!desceningSort)} 
-        className="search-bar__sorting-button">{desceningSort ? 'Descending' : 'Ascending'}</button>
-        <img src={arrow} alt="" 
-        className={`search-bar__arrow-icon ${desceningSort ? '': 'search-bar__arrow-icon-up'}`} 
-        height="8" width="14"/>
+      <div className="search-bar__sorting">
+        <div className="search-bar__release-date-container">
+          <select className="search-bar__release-date" defaultValue="0">
+            <option value="0">Release date</option>
+          </select>
+          <img src={arrow} alt="" className="search-bar__arrow-icon" height="8" width="14"/>
+        </div>
+        <div className="search-bar__sorting-container">
+          <button onClick={() => setDescendingSort(!desceningSort)} 
+          className="search-bar__sorting-button">{desceningSort ? 'Descending' : 'Ascending'}</button>
+          <img src={arrow} alt="" 
+          className={`search-bar__arrow-icon ${desceningSort ? '': 'search-bar__arrow-icon-up'}`} 
+          height="8" width="14"/>
+        </div>
       </div>
     </div>
   )
