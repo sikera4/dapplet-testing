@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/dapplets-testing/static/css/main.0d3a04cd.chunk.css",
+    "main.js": "/dapplets-testing/static/js/main.657bb00b.chunk.js",
+    "main.js.map": "/dapplets-testing/static/js/main.657bb00b.chunk.js.map",
+    "runtime-main.js": "/dapplets-testing/static/js/runtime-main.49052a5f.js",
+    "runtime-main.js.map": "/dapplets-testing/static/js/runtime-main.49052a5f.js.map",
+    "static/js/2.e8a665c3.chunk.js": "/dapplets-testing/static/js/2.e8a665c3.chunk.js",
+    "static/js/2.e8a665c3.chunk.js.map": "/dapplets-testing/static/js/2.e8a665c3.chunk.js.map",
+    "static/js/3.6ef8ad37.chunk.js": "/dapplets-testing/static/js/3.6ef8ad37.chunk.js",
+    "static/js/3.6ef8ad37.chunk.js.map": "/dapplets-testing/static/js/3.6ef8ad37.chunk.js.map",
+    "index.html": "/dapplets-testing/index.html",
+    "static/css/main.0d3a04cd.chunk.css.map": "/dapplets-testing/static/css/main.0d3a04cd.chunk.css.map",
+    "static/js/2.e8a665c3.chunk.js.LICENSE.txt": "/dapplets-testing/static/js/2.e8a665c3.chunk.js.LICENSE.txt",
+    "static/media/App.scss": "/dapplets-testing/static/media/BG.9a2bd6a5.png",
+    "static/media/RightAside.scss": "/dapplets-testing/static/media/red-cross.30e34e36.svg",
+    "static/media/loading-gif.89906e12.gif": "/dapplets-testing/static/media/loading-gif.89906e12.gif"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.49052a5f.js",
+    "static/js/2.e8a665c3.chunk.js",
+    "static/css/main.0d3a04cd.chunk.css",
+    "static/js/main.657bb00b.chunk.js"
+  ]
+}
