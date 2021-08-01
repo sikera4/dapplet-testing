@@ -134,7 +134,12 @@
     color: #565555;
     font-size: 16px;
     line-height: 19px;
-    width: 150px;
+    width: 380px;
+  }
+  @include media-xxl {
+    &__description {
+      width: 150px;
+    }
   }
   @include media-sm {
     &__description {
@@ -158,7 +163,12 @@
     margin-left: 20px;
     font-family: 'Roboto';
     flex-grow: 1;
-    width: 95px;
+    width: 186px;
+  }
+  @include media-xxl {
+    &__user {
+      width: 95px;
+    }
   }
   @include media-md {
     &__user {

@@ -2,7 +2,7 @@
 @import '../../media-mixins';
 
 .list {
-  max-width: 1000px;
+  max-width: 1328px;
   margin-top: 76px;
   align-self: center;
   background: linear-gradient(180deg, rgba(185, 251, 255, 0.2) 0%, rgba(227, 220, 255, 0.2) 100%);
@@ -95,6 +95,12 @@
       margin-top: 10px;
       box-shadow: 0px 0px 19px 0px rgba(156, 185, 222, 0.15);
     }
+  }
+}
+
+@include media-xxl {
+  .list {
+    max-width: 1000px;
   }
 }
 
