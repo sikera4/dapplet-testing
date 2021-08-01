@@ -17,7 +17,7 @@ const List = (props: ListPropsInterface) => {
   const [neededStart, setNeededStart] = useState<number>(20);
   const [searchInputValue, setSearchInputValue] = useState<string>('');
   const [hasMore, setHasMore] = useState<boolean>(true);
-  const [outFilteredDapplets, setOutFilteredDapplets] = useState(0);
+  const [outFilteredDapplets, setOutFilteredDapplets] = useState<number>(0);
   const debouncedSearchValue = useDebounce(searchInputValue, 500);
 
   const setSearchValue = (e:React.ChangeEvent<HTMLInputElement>) => {
@@ -26,7 +26,7 @@ const List = (props: ListPropsInterface) => {
 
   const handleOnDragEnd = (result: DropResult) => {
     if (!result.destination) return;
-    const newList = Array.from(listsData);
+    const newList: DappletPropsInterface[] = Array.from(listsData);
     const [reorderedItem] = newList.splice(result.source.index, 1);
     newList.splice(result.destination!.index, 0, reorderedItem);
     setListsData(newList);
@@ -53,13 +53,13 @@ const List = (props: ListPropsInterface) => {
   const loadMoreData = async (limit: number) => {
     let address: string = `https://dapplets-hiring-api.herokuapp.com/api/v1/dapplets?limit=${limit}&start=${neededStart}`;
     if (debouncedSearchValue) {
-      let filterProps = '&filter=' + JSON.stringify([{property: 'title', value: debouncedSearchValue},
+      let filterProps: string = '&filter=' + JSON.stringify([{property: 'title', value: debouncedSearchValue},
       {property: 'description', value: debouncedSearchValue}]);
       address += filterProps;
     }
     const response = await fetch(address);
     if (response.status !== 200) {
-      throw new Error('Could not fetch the lists');
+      throw new Error('Could not load more data');
     }
     const newData = await response.json();
     const newList: DappletPropsInterface[] = newData.data;
@@ -68,18 +68,19 @@ const List = (props: ListPropsInterface) => {
     setNeededStart(neededStart + 20);
   }
 
-  const loadMoreDataErrorCatcher = () => {
-    let neededLimit = (outFilteredDapplets) ? outFilteredDapplets : 20;
+  const moreDataLoader = () => {
+    let neededLimit: number = (outFilteredDapplets) ? outFilteredDapplets : 20;
     loadMoreData(neededLimit).catch((e: Error) => props.statusChanger(e.message));
   }
   
   useEffect(() => {
     if (debouncedSearchValue) {
       fetchData(debouncedSearchValue).then((lists) => {
-        let newLists = lists.filter((list) => list.title.includes(debouncedSearchValue) || list.description.includes(debouncedSearchValue));
+        let newLists: DappletPropsInterface[] = lists.filter((list) => 
+        list.title.includes(debouncedSearchValue) || list.description.includes(debouncedSearchValue));
         setListsData(newLists);
         setOutFilteredDapplets(lists.length - newLists.length);
-        if (outFilteredDapplets) loadMoreDataErrorCatcher();
+        if (outFilteredDapplets) moreDataLoader();
         setOutFilteredDapplets(0);
         if (newLists.length === 0) setHasMore(false);
         props.statusChanger('Active');
@@ -96,9 +97,12 @@ const List = (props: ListPropsInterface) => {
     <div className="list">
       <SearchBar setSearchInputValue={setSearchValue}/>
       <InfiniteScroll
-      next={loadMoreDataErrorCatcher}
+      next={moreDataLoader}
       hasMore={hasMore}
-      loader={<div className="list__loader-container"><Loader type="ThreeDots" color="#0085FF" height="100" width="100" /></div>}
+      loader={<div className="list__loader-container">
+        <p className="list__loader-caption">Loading more Dapplets</p>
+        <Loader type="ThreeDots" color="#0085FF" height="100" width="100" />
+        </div>}
       endMessage={<h2 className="list__end-message">
       <b>There seems to be nothing else...</b>
     </h2>}

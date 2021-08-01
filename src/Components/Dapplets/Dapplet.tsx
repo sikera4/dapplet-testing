@@ -2,7 +2,7 @@ import './Dapplet.scss';
 import React, { useState, SyntheticEvent } from 'react';
 import Tag from '../Tag/Tag';
 import imageLoader from '../../assets/loading-gif.gif';
-import logo from '../../assets/RR_Logo.png';
+import defaultSource from '../../assets/not-found.png';
 import downloadIcon from '../../assets/download.png';
 import checkIcon from '../../assets/check-circle.png';
 import { useEffect } from 'react';
@@ -33,7 +33,7 @@ const Dapplet = (props: DappletPropsInterface) => {
     props.text_6, props.text_7, props.text_8, props.text_9];
   const addDefaultSrc = (event: SyntheticEvent<HTMLImageElement>) => {
     const eTarget = event.target as HTMLImageElement;
-    eTarget.src = logo;
+    eTarget.src = defaultSource;
   }
   useEffect(() => {
     let data = localStorage.getItem(props.id);
@@ -58,7 +58,7 @@ const Dapplet = (props: DappletPropsInterface) => {
               <div className="dapplet__caption-inner-container">
                 <div className="dapplet__name">{props.title.slice(0, 30)}</div>
                 <div className="dapplet__code">{props.address}</div>
-                <div className="dapplet__media-md-name">{props.author}</div>
+                <div className="dapplet__media-md-name">{props.author.slice(0, 32)}</div>
               </div>
             </div>
             <button className={`dapplet__media-xs-install-button ${installed ? 'dapplet__media-xs-install-button_installed':

@@ -38,3 +38,11 @@
     }
   }
 }
+@include media-xs {
+  .header {
+    padding: 10px;
+    &__burger {
+      margin-right: 10px;
+    }
+  }
+}
