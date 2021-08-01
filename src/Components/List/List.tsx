@@ -77,7 +77,8 @@ const List = (props: ListPropsInterface) => {
     if (debouncedSearchValue) {
       fetchData(debouncedSearchValue).then((lists) => {
         let newLists: DappletPropsInterface[] = lists.filter((list) => 
-        list.title.includes(debouncedSearchValue) || list.description.includes(debouncedSearchValue));
+        list.title.toLowerCase().includes(debouncedSearchValue.toLowerCase()) || 
+        list.description.toLowerCase().includes(debouncedSearchValue.toLowerCase()));
         setListsData(newLists);
         setOutFilteredDapplets(lists.length - newLists.length);
         if (outFilteredDapplets) moreDataLoader();
