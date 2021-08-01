@@ -9,7 +9,7 @@ interface SearchBarPropsInterface {
 }
 
 const SearchBar = (props: SearchBarPropsInterface) => {
-  const [desceningSort, setDescendingSort] = useState(true);
+  const [desceningSort, setDescendingSort] = useState<boolean>(true);
   return (
     <div className="search-bar">
       <div className="search-bar__input-container">
