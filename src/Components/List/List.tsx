@@ -63,7 +63,7 @@ const List = (props: ListPropsInterface) => {
     }
     const newData = await response.json();
     const newList: DappletPropsInterface[] = newData.data;
-    if (newList.length === 0) setHasMore(false);
+    if (newList.length === 0 || newList.length < 20) setHasMore(false);
     setListsData(listsData.concat(newList));
     setNeededStart(neededStart + 20);
   }
@@ -83,7 +83,7 @@ const List = (props: ListPropsInterface) => {
         setOutFilteredDapplets(lists.length - newLists.length);
         if (outFilteredDapplets) moreDataLoader();
         setOutFilteredDapplets(0);
-        if (newLists.length === 0) setHasMore(false);
+        if (newLists.length === 0 || newLists.length < 20) setHasMore(false);
         props.statusChanger('Active');
       }).catch((e: Error) => props.statusChanger(e.message))
     } else {
@@ -105,7 +105,7 @@ const List = (props: ListPropsInterface) => {
         <Loader type="ThreeDots" color="#0085FF" height="100" width="100" />
         </div>}
       endMessage={<h2 className="list__end-message">
-      <b>There seems to be nothing else...</b>
+      <b>There seems to be nothing more...</b>
     </h2>}
       dataLength={listsData.length}>
         <DragDropContext onDragEnd={handleOnDragEnd}>
