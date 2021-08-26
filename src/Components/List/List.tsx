@@ -1,14 +1,18 @@
+/* eslint-disable @typescript-eslint/no-shadow */
+/* eslint-disable react/jsx-props-no-spreading */
 import './List.scss';
-import SearchBar from '../SearchBar/SearchBar';
-import Dapplet from '../Dapplets/Dapplet';
-import { useState, useEffect } from 'react';
-import { DappletPropsInterface } from '../Dapplets/Dapplet';
-import useDebounce from '../../Hooks/DebounceHook';
-import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
+import React, { useState, useEffect } from 'react';
+import {
+  DragDropContext, Droppable, Draggable, DropResult,
+} from 'react-beautiful-dnd';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Loader from 'react-loader-spinner';
+import SearchBar from '../SearchBar/SearchBar';
+import Dapplet, { DappletPropsInterface } from '../Dapplets/Dapplet';
+import useDebounce from '../../Hooks/DebounceHook';
 
 interface ListPropsInterface {
+  // eslint-disable-next-line no-unused-vars
   statusChanger(message: string): void;
 }
 
@@ -20,9 +24,9 @@ const List = (props: ListPropsInterface) => {
   const [outFilteredDapplets, setOutFilteredDapplets] = useState<number>(0);
   const debouncedSearchValue = useDebounce(searchInputValue, 500);
 
-  const setSearchValue = (e:React.ChangeEvent<HTMLInputElement>) => {
+  const setSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInputValue(e.target.value);
-  }
+  };
 
   const handleOnDragEnd = (result: DropResult) => {
     if (!result.destination) return;
@@ -30,13 +34,13 @@ const List = (props: ListPropsInterface) => {
     const [reorderedItem] = newList.splice(result.source.index, 1);
     newList.splice(result.destination!.index, 0, reorderedItem);
     setListsData(newList);
-  }
+  };
 
   const fetchData = async (debouncedSearchValue: string) => {
     let address = 'https://dapplets-hiring-api.herokuapp.com/api/v1/dapplets?limit=20&start=0';
     if (debouncedSearchValue) {
-      let filterProps: string = '&filter=' + JSON.stringify([{property: 'title', value: debouncedSearchValue},
-    {property: 'description', value: debouncedSearchValue}]);
+      const filterProps: string = `&filter=${JSON.stringify([{ property: 'title', value: debouncedSearchValue },
+        { property: 'description', value: debouncedSearchValue }])}`;
       address += filterProps;
     }
     const response = await fetch(address);
@@ -48,13 +52,13 @@ const List = (props: ListPropsInterface) => {
     const data = await response.json();
     const lists: DappletPropsInterface[] = data.data;
     return lists;
-  }
+  };
 
   const loadMoreData = async (limit: number) => {
     let address: string = `https://dapplets-hiring-api.herokuapp.com/api/v1/dapplets?limit=${limit}&start=${neededStart}`;
     if (debouncedSearchValue) {
-      let filterProps: string = '&filter=' + JSON.stringify([{property: 'title', value: debouncedSearchValue},
-      {property: 'description', value: debouncedSearchValue}]);
+      const filterProps: string = `&filter=${JSON.stringify([{ property: 'title', value: debouncedSearchValue },
+        { property: 'description', value: debouncedSearchValue }])}`;
       address += filterProps;
     }
     const response = await fetch(address);
@@ -66,63 +70,68 @@ const List = (props: ListPropsInterface) => {
     if (newList.length === 0 || newList.length < 20) setHasMore(false);
     setListsData(listsData.concat(newList));
     setNeededStart(neededStart + 20);
-  }
+  };
 
   const moreDataLoader = () => {
-    let neededLimit: number = (outFilteredDapplets) ? outFilteredDapplets : 20;
+    const neededLimit: number = (outFilteredDapplets) || 20;
     loadMoreData(neededLimit).catch((e: Error) => props.statusChanger(e.message));
-  }
-  
+  };
+
   useEffect(() => {
     if (debouncedSearchValue) {
       fetchData(debouncedSearchValue).then((lists) => {
-        let newLists: DappletPropsInterface[] = lists.filter((list) => 
-        list.title.toLowerCase().includes(debouncedSearchValue.toLowerCase()) || 
-        list.description.toLowerCase().includes(debouncedSearchValue.toLowerCase()));
+        const newLists: DappletPropsInterface[] = lists.filter((list) => list.title.toLowerCase()
+          .includes(debouncedSearchValue.toLowerCase())
+        || list.description.toLowerCase()
+          .includes(debouncedSearchValue.toLowerCase()));
         setListsData(newLists);
         setOutFilteredDapplets(lists.length - newLists.length);
         if (outFilteredDapplets) moreDataLoader();
         setOutFilteredDapplets(0);
         if (newLists.length === 0 || newLists.length < 20) setHasMore(false);
         props.statusChanger('Active');
-      }).catch((e: Error) => props.statusChanger(e.message))
+      }).catch((e: Error) => props.statusChanger(e.message));
     } else {
       fetchData('')
         .then((list) => {
           setListsData(list);
-      }).catch((e: Error) => props.statusChanger(e.message));
+        }).catch((e: Error) => props.statusChanger(e.message));
     }
   }, [debouncedSearchValue, props]);
-  
+
   return (
     <div className="list">
-      <SearchBar setSearchInputValue={setSearchValue}/>
+      <SearchBar setSearchInputValue={setSearchValue} />
       <InfiniteScroll
-      next={moreDataLoader}
-      hasMore={hasMore}
-      loader={<div className="list__loader-container">
-        <p className="list__loader-caption">Loading more Dapplets</p>
-        <Loader type="ThreeDots" color="#0085FF" height="100" width="100" />
-        </div>}
-      endMessage={<h2 className="list__end-message">
-      <b>There seems to be nothing more...</b>
-    </h2>}
-      dataLength={listsData.length}>
+        next={moreDataLoader}
+        hasMore={hasMore}
+        loader={(
+          <div className="list__loader-container">
+            <p className="list__loader-caption">Loading more Dapplets</p>
+            <Loader type="ThreeDots" color="#0085FF" height="100" width="100" />
+          </div>
+)}
+        endMessage={(
+          <h2 className="list__end-message">
+            <b>There seems to be nothing more...</b>
+          </h2>
+)}
+        dataLength={listsData.length}
+      >
         <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId="dapplets">
             {(provided) => (
-            <ul className="list__dapplets" {...provided.droppableProps} ref={provided.innerRef}>
-              {listsData && listsData.map((list, index) => {
-                return (
+              <ul className="list__dapplets" {...provided.droppableProps} ref={provided.innerRef}>
+                {listsData && listsData.map((list, index) => (
                   <Draggable key={list.id} draggableId={list.id} index={index}>
                     {(provided) => (
                       <li className="list__dapplet" ref={provided.innerRef} {...provided.draggableProps}>
                         <div className="list__dapplet-drag-handle-container" {...provided.dragHandleProps}>
-                          <div className="list__dapplet-drag-handle"></div>
+                          <div className="list__dapplet-drag-handle" />
                         </div>
-                        <Dapplet 
+                        <Dapplet
                           id={list.id}
-                          author={list.author} 
+                          author={list.author}
                           description={list.description}
                           icon={list.icon}
                           title={list.title}
@@ -135,20 +144,20 @@ const List = (props: ListPropsInterface) => {
                           text_6={list.text_6}
                           text_7={list.text_7}
                           text_8={list.text_8}
-                          text_9={list.text_9}/>
+                          text_9={list.text_9}
+                        />
                       </li>
                     )}
                   </Draggable>
-                )
-              })}
-              {provided.placeholder}
-            </ul>
+                ))}
+                {provided.placeholder}
+              </ul>
             )}
           </Droppable>
         </DragDropContext>
       </InfiniteScroll>
     </div>
-  )
-}
+  );
+};
 
 export default List;

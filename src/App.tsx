@@ -7,9 +7,9 @@ import RightAside from './Components/RightAside/RightAside';
 function App() {
   return (
     <div className="App">
-      <LeftAside/>
-      <Main/>
-      <RightAside/>
+      <LeftAside />
+      <Main />
+      <RightAside />
     </div>
   );
 }
